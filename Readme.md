@@ -20,10 +20,22 @@ Modelos de regresión lineal OLS P(Q), __sin atributo Año__
 # Procedimiento a realizar:
 
 ## Clusterings a desarrollar
+Tiene sentido aplicar distintos modelos según la actividad del cliente. 
+Carece de sentido comprar un cliente que posee un comportamiento de compra actualizado los ultimos 90 días, a uno que no realiza una compra hace mas de un año.
+
+La actividad de R, esta segmetnada en la siguiente secuencia:
+- 0 a 90 días __Activo__
+- 90 a 364 días __Fugandose__
+- 365 días en adelante __Fugado__
+
+__Modelos a desarrollar__
 1. [ ] Clustering RFM+
-2. [ ] Clustering RF KG Valoración
-3. [ ] Clustering RFM KG Valoración
-4. [ ] Clustering RFM KG Valoración
+2. [ ] Clustering RFM+(FxM)
+3. [ ] Clustering RF KG 
+4. [ ] Clustering RFM KG 
+5. [ ] Clustering RF KG Valoración
+6. [ ] Clustering RFM KG Valoración
+7. [ ] Clustering RFM KG Sencibilidad Jerarquica
 
 
 
@@ -37,10 +49,16 @@ Modelos de regresión lineal OLS P(Q), __sin atributo Año__
 5. [X] Escalar datos de RFM+
     - [X] Aplicar escala Min_MAX
     - [X] Aplicar escala Ln()
-6. [ ] Preparación basica
+6. [ ] Preparación basica, Ajuste de datos
     - [X] Definir FxM, def que requere de $W_f$ $W_m$
     - [X] Definir R Estado de actividad
 7. [ ] Modelo Clustering de RFM+ Parametros
     - [ ] Curva de la cantiadad de cluster
-    - [ ] Columnas error, cantidad de atributos
-    - [ ] 
+    - [ ] Columnas error, cantidad de Variables
+8. [ ] Estructura iterativa, para dif valores de $W_f$ $W_m$
+    - [ ] Contruye un grafico de dispersión para los dif valores
+    - [ ] guardado en PDF del grafico para los dif valores
+9. [ ] Metricas para comprar modelos
+    - [ ] Estudiar publicación de RFM
+    - [ ] Definir un objetivo en comun de los tipos de modelos
+    - [ ] Desempeño de un modelo predictivo, Log-Log que considera 
