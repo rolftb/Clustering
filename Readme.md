@@ -30,13 +30,17 @@ Modelos de regresión lineal OLS P(Q), __sin atributo Año__
 
 
 ## Pasos RFM
-1. [ ] Data Customer All
-2. [ ] Data Facturas All
-3. [ ] Construcción Caracteristicas a usar
-    - [ ] Un modelo por cada week tipe
-    - [X] Modelo que reemplza W por $C_W$
-3. [ ] Dispersión puntos RFM
-4. [ ] Modelo Clustering de RFM+
-    - [ ] Defionir R, aparte
-    - [ ] Defionir FxM
-    - [ ] Calcular Clustering FxM
+1. [X] Data Customer All
+2. [X] Data Facturas All
+3. [X] Construcción Caracteristicas a usar
+4. [ ] Dispersión puntos RFM
+5. [X] Escalar datos de RFM+
+    - [X] Aplicar escala Min_MAX
+    - [X] Aplicar escala Ln()
+6. [ ] Preparación basica
+    - [X] Definir FxM, def que requere de $W_f$ $W_m$
+    - [X] Definir R Estado de actividad
+7. [ ] Modelo Clustering de RFM+ Parametros
+    - [ ] Curva de la cantiadad de cluster
+    - [ ] Columnas error, cantidad de atributos
+    - [ ] 
