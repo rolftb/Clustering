@@ -17,18 +17,71 @@ Modelos de regresión lineal OLS P(Q), __sin atributo Año__
 - $\ln(P(Q))=\beta_1Q  +\beta_0$
 - $\ln(P(Q))=\beta_1\ln(Q)  +\beta_0$
 
+### Funciones
+
+#### Ajuste De Datos
+
+- Estado R
+  - `Estado\_R(X)` por apply
+  - DF_Estado_R(DF) ajusta directamnte el DF ingresado
+- `data_Min_Max(dx,Min_Max_col,drop_columns)`
+  - Ajusta las columnas del arreglo Min_Max_col
+  - Entrega un df copiado
+  - dx dataframe
+  - Min_Max_col: (Array) Listado de columnas a escalar
+  - drop_columns: (True or False)  Eliminar columnas del listado
+- `data_ln(dx,ln_col,drop_columns)`
+  
+  Pasa un listado de columnas a Ln y entrga una copia del dataframe
+      - dx: dataframe
+      - ln_col: (Array) Listado de columnas a escalar 
+      - drop_columns: (True or False)  Eliminar columnas del listado
+- `Df_Pond_FxM(RFM_df ,  Col_FM , weighted_F,weighted_M):`
+    
+    Entrega una copia del df:
+
+  - W_F pond de F
+  - W_M pond de M
+  - Col_FM:(F,M)
+
+#### Ajuste de K-means
+
+- `Curva_kmeans(D_Clientes_Frec,Col)`
+  
+    Permite definir el numero de K segmentos de K-means.
+
+- `Columnas_def(X_std):`
+
+    Permite definir como disminutye al variancia intra cluster al incorporar más columnas
+
+#### Proceso de Clustering K-means
+
+`def_Col_cluster(D_Clientes, Col, Numero_de_clusters, ln_Col_tra=False)`
+
+> - D_Clientes: Dataframe a clusterizar (pd.DataFrame)
+> - Col: Columnas utilizadas para el clustering (Array)
+> - Numero_de_clusters: K segmentos a generar (int)
+> - ln_Col_tra=False: Si las columnas ya fueron ajustadas con Ln (Bulean logical value)
+
+    Entrega(DataFrame):
+    Una copia del dataframe `D_Clientes` Con una columna adicional llamada `identified_clusters` con los el cluster que pertenece cada cliente.(Cada fila).
+
+
 # Procedimiento a realizar:
 
 ## Clusterings a desarrollar
+
 Tiene sentido aplicar distintos modelos según la actividad del cliente. 
 Carece de sentido comprar un cliente que posee un comportamiento de compra actualizado los ultimos 90 días, a uno que no realiza una compra hace mas de un año.
 
 La actividad de R, esta segmetnada en la siguiente secuencia:
+
 - 0 a 90 días __Activo__
 - 90 a 364 días __Fugandose__
 - 365 días en adelante __Fugado__
 
 __Modelos a desarrollar__
+
 1. [ ] Clustering RFM+
 2. [ ] Clustering RFM+(FxM)
 3. [ ] Clustering RF KG 
@@ -42,6 +95,7 @@ __Modelos a desarrollar__
 
 
 ## Pasos RFM
+
 1. [X] Data Customer All
 2. [X] Data Facturas All
 3. [X] Construcción Caracteristicas a usar
