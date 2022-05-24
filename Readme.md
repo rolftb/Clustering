@@ -23,22 +23,24 @@
   - `Estado\_R(X)` por apply
   - DF_Estado_R(DF) ajusta directamnte el DF ingresado
 - `data_Min_Max(dx,Min_Max_col,drop_columns)`
-  - Ajusta las columnas del arreglo Min_Max_col
-  - Entrega un df copiado
+  > Entrega un df copiado
+  >> Ajusta las columnas del arreglo Min_Max_col
+  
   - dx dataframe
   - Min_Max_col: (Array) Listado de columnas a escalar
   - drop_columns: (True or False)  Eliminar columnas del listado
 - `data_ln(dx,ln_col,drop_columns)`
-  
-  Pasa un listado de columnas a Ln y entrga una copia del dataframe
-      - dx: dataframe
-      - ln_col: (Array) Listado de columnas a escalar 
-      - drop_columns: (True or False)  Eliminar columnas del listado
+ 
+     >Pasa un listado de columnas a Ln y entrga una copia del dataframe
+  - dx: dataframe
+  - ln_col: (Array) Listado de columnas a escalar
+  - drop_columns: (True or False)  Eliminar columnas del listado
+
 - `Df_Pond_FxM(RFM_df ,  Col_FM , weighted_F,weighted_M):`
-    
-    Entrega una copia del df:
-    con una nueva columna llamda $(F \times W_F + M \times W_M)$
-    
+
+   > Entrega una copia del df:
+    >>con una nueva columna llamda $(F \times W_F + M \times W_M)$
+
   - W_F pond de F
   - W_M pond de M
   - Col_FM:(F,M)
@@ -46,32 +48,28 @@
 #### Ajuste de K-means
 
 - `Curva_kmeans(D_Clientes_Frec,Col)`
-  
-    Permite definir el numero de K segmentos de K-means.
+    >Permite definir el numero de K segmentos de K-means.
 
 - `Columnas_def(X_std):`
-
-    Permite definir como disminutye al variancia intra cluster al incorporar más columnas
+    >Permite definir como disminutye al variancia intra cluster al incorporar más columnas
 
 #### Proceso de Clustering K-means
 
 - `def_Col_cluster(D_Clientes, Col, Numero_de_clusters, ln_Col_tra=False)`
 
 >Entrega(DataFrame):
-Una copia del dataframe `D_Clientes` Con una columna adicional llamada `identified_clusters` con los el cluster que pertenece cada cliente.(Cada fila).
+>>Una copia del dataframe `D_Clientes` Con una columna adicional llamada `identified_clusters` con los el cluster que pertenece cada cliente.(Cada fila).
 
 > - D_Clientes: Dataframe a clusterizar (pd.DataFrame)
 > - Col: Columnas utilizadas para el clustering (Array)
 > - Numero_de_clusters: K segmentos a generar (int)
 > - ln_Col_tra=False: Si las columnas ya fueron ajustadas con Ln (Bulean logical value)
 
-
-
-# Procedimiento a realizar:
+# Procedimiento a realizar
 
 ## Clusterings a desarrollar
 
-Tiene sentido aplicar distintos modelos según la actividad del cliente. 
+Tiene sentido aplicar distintos modelos según la actividad del cliente.
 Carece de sentido comprar un cliente que posee un comportamiento de compra actualizado los ultimos 90 días, a uno que no realiza una compra hace mas de un año.
 
 La actividad de R, esta segmetnada en la siguiente secuencia:
@@ -89,21 +87,17 @@ if(x<=90):
         return('Fugado')
 ```
 
-__Modelos a desarrollar__
+### Modelos a desarrollar
 
 1. [ ] Clustering RFM
 2. [ ] Clustering RFM+(FxM)
-3. [ ] Clustering RF KG 
-4. [ ] Clustering RFM KG 
+3. [ ] Clustering RF KG
+4. [ ] Clustering RFM KG
 5. [ ] Clustering RF KG Valoración
 6. [ ] Clustering RFM KG Valoración
 7. [ ] Clustering RFM KG Sencibilidad Jerarquica
 
-
-
-
-
-## Pasos RFM
+## Pasos R+FM
 
 1. [X] Data Customer All
 2. [X] Data Facturas All
@@ -123,7 +117,7 @@ __Modelos a desarrollar__
 8. [X] Estructura iterativa, para dif valores de $W_f$ $W_m$
     - [X] Contruye un grafico de dispersión para los dif valores
     - [X] guardado en PDF del grafico para los dif valores
-9.  [ ] Metricas para comprar modelos
+9. [ ] Metricas para comprar modelos
     - [ ] Estudiar publicación de RFM
     - [X] Definir un objetivo en comun de los tipos de modelos __(PREDICICÓND DEL PRECIO)__
     - [X] Desempeño de un modelo predictivo, Log-Log que considera.
