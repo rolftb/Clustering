@@ -39,7 +39,8 @@ Modelos de regresión lineal OLS P(Q), __sin atributo Año__
 - `Df_Pond_FxM(RFM_df ,  Col_FM , weighted_F,weighted_M):`
     
     Entrega una copia del df:
-
+    con una nueva columna llamda $(F \times W_F + M \times W_M)$
+    
   - W_F pond de F
   - W_M pond de M
   - Col_FM:(F,M)
@@ -56,15 +57,16 @@ Modelos de regresión lineal OLS P(Q), __sin atributo Año__
 
 #### Proceso de Clustering K-means
 
-`def_Col_cluster(D_Clientes, Col, Numero_de_clusters, ln_Col_tra=False)`
+- `def_Col_cluster(D_Clientes, Col, Numero_de_clusters, ln_Col_tra=False)`
+
+>Entrega(DataFrame):
+Una copia del dataframe `D_Clientes` Con una columna adicional llamada `identified_clusters` con los el cluster que pertenece cada cliente.(Cada fila).
 
 > - D_Clientes: Dataframe a clusterizar (pd.DataFrame)
 > - Col: Columnas utilizadas para el clustering (Array)
 > - Numero_de_clusters: K segmentos a generar (int)
 > - ln_Col_tra=False: Si las columnas ya fueron ajustadas con Ln (Bulean logical value)
 
-    Entrega(DataFrame):
-    Una copia del dataframe `D_Clientes` Con una columna adicional llamada `identified_clusters` con los el cluster que pertenece cada cliente.(Cada fila).
 
 
 # Procedimiento a realizar:
@@ -79,6 +81,15 @@ La actividad de R, esta segmetnada en la siguiente secuencia:
 - 0 a 90 días __Activo__
 - 90 a 364 días __Fugandose__
 - 365 días en adelante __Fugado__
+
+```python
+if(x<=90):
+        return('Activo')
+    elif(90<x<=365):
+        return('Fugandose')
+    else:
+        return('Fugado')
+```
 
 __Modelos a desarrollar__
 
