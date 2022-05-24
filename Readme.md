@@ -1,21 +1,19 @@
 # Archivos
 
-Variables:
+- Modelos de regresión lineal OLS P(Q), __sin atributo Año__
+  - $P(Q)=\beta_1Q +\beta_0$
+  - $P(Q)=\beta_1Q +\beta_2 Q^2 + \beta_3Q^3  +\beta_0$
+  - $P(Q)=\beta_1Q +\beta_2 Q^2 + \beta_3Q^3 +\beta_0$
+  - $\ln(P(Q))=\beta_1Q  +\beta_0$
+  - $\ln(P(Q))=\beta_1\ln(Q)  +\beta_0$
 
-- $P:$ Precio Estimado
-- $Q:$ Peso neto Kg.(_Variable discreta_)
-- $A:$ Año el cual se ejecuta la venta.(_Variable discreta_)
-- $w_i$ Semana $i$ del conjunto de semanas $W$
+- Variables:
+  - $P:$ Precio Estimado
+  - $Q:$ Peso neto Kg.(_Variable discreta_)
+  - $A:$ Año el cual se ejecuta la venta.(_Variable discreta_)
+  - $w_i$ Semana $i$ del conjunto de semanas $W$
 
-## A_1 (lineal sin Año)) Construccion modelo [Tradicional 1010078]
-
-Modelos de regresión lineal OLS P(Q), __sin atributo Año__
-
-- $P(Q)=\beta_1Q +\beta_0$
-- $P(Q)=\beta_1Q +\beta_2 Q^2 + \beta_3Q^3  +\beta_0$
-- $P(Q)=\beta_1Q +\beta_2 Q^2 + \beta_3Q^3 +\beta_0$
-- $\ln(P(Q))=\beta_1Q  +\beta_0$
-- $\ln(P(Q))=\beta_1\ln(Q)  +\beta_0$
+## A_2 (lineal sin Año)) Construccion modelo [Tradicional 1010078]
 
 ### Funciones
 
@@ -93,7 +91,7 @@ if(x<=90):
 
 __Modelos a desarrollar__
 
-1. [ ] Clustering RFM+
+1. [ ] Clustering RFM
 2. [ ] Clustering RFM+(FxM)
 3. [ ] Clustering RF KG 
 4. [ ] Clustering RFM KG 
@@ -110,20 +108,22 @@ __Modelos a desarrollar__
 1. [X] Data Customer All
 2. [X] Data Facturas All
 3. [X] Construcción Caracteristicas a usar
-4. [ ] Dispersión puntos RFM
+    > Se contruyeron las funciones para ajustar facilmente las columnas de interes
+4. [X] Dispersión puntos RFM
+   > Es muy simple el resultado y no vale la pena
 5. [X] Escalar datos de RFM+
     - [X] Aplicar escala Min_MAX
     - [X] Aplicar escala Ln()
-6. [ ] Preparación basica, Ajuste de datos
+6. [X] Preparación basica, Ajuste de datos
     - [X] Definir FxM, def que requere de $W_f$ $W_m$
     - [X] Definir R Estado de actividad
-7. [ ] Modelo Clustering de RFM+ Parametros
-    - [ ] Curva de la cantiadad de cluster
-    - [ ] Columnas error, cantidad de Variables
-8. [ ] Estructura iterativa, para dif valores de $W_f$ $W_m$
-    - [ ] Contruye un grafico de dispersión para los dif valores
-    - [ ] guardado en PDF del grafico para los dif valores
-9. [ ] Metricas para comprar modelos
+7. [X] Modelo Clustering de RFM+ Parametros
+    - [X] Curva de la cantiadad de cluster
+    - [X] Columnas error, cantidad de Variables
+8. [X] Estructura iterativa, para dif valores de $W_f$ $W_m$
+    - [X] Contruye un grafico de dispersión para los dif valores
+    - [X] guardado en PDF del grafico para los dif valores
+9.  [ ] Metricas para comprar modelos
     - [ ] Estudiar publicación de RFM
-    - [ ] Definir un objetivo en comun de los tipos de modelos
-    - [ ] Desempeño de un modelo predictivo, Log-Log que considera 
+    - [X] Definir un objetivo en comun de los tipos de modelos __(PREDICICÓND DEL PRECIO)__
+    - [X] Desempeño de un modelo predictivo, Log-Log que considera.
