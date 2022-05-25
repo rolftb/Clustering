@@ -13,14 +13,25 @@
   - $A:$ Año el cual se ejecuta la venta.(_Variable discreta_)
   - $w_i$ Semana $i$ del conjunto de semanas $W$
 
+
+
+
+
 ## A_2 (lineal sin Año)) Construccion modelo [Tradicional 1010078]
+
+Se definen las funciones del arrchivp `R_FM_Func.py`, Se estudia el K para R+FM y se evalua los valores de $W_F$ $W_M$.
+
+
+## R_FM_Func.py
+
+>Archivo importable desde otro codigo, con funciones para ajustar a los datos.
 
 ### Funciones
 
 #### Ajuste De Datos
 
 - Estado R
-  - `Estado\_R(X)` por apply
+  - `Estado_R(X)` por apply
   - DF_Estado_R(DF) ajusta directamnte el DF ingresado
 - `data_Min_Max(dx,Min_Max_col,drop_columns)`
   > Entrega un df copiado
@@ -121,3 +132,7 @@ if(x<=90):
     - [ ] Estudiar publicación de RFM
     - [X] Definir un objetivo en comun de los tipos de modelos __(PREDICICÓND DEL PRECIO)__
     - [X] Desempeño de un modelo predictivo, Log-Log que considera.
+10. [ ] Resultado o Descripción del Cluster contruido.
+    1. [ ] Grafico 
+    2. [ ] Grafico columna que representa los valoresd e cada cluster
+<!-- 11. [ ]  -->
