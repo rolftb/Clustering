@@ -1,59 +1,86 @@
-
 # Function import
-# import numpy as np
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
+# Requiere
+import sklearn
+import statsmodels.api as sm
+from sklearn.linear_model import Ridge
+
+#============================================
+# Curva K-means Regla del codo
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
 
 
 
 #=========================================
 # Actividad según R+
 #=========================================
-# class ClassName(object):
-#     """docstring for ClassName"""
-#     def __init__(self, arg):
-#         super(ClassName, self).__init__()
-#         self.arg = arg
 
-class Class_R_Estados:
 
-    def Estado_R(self,x):
-        """
-        Cortes 0-89|90-364|365-
-        Uso:
-        RFM_Customers['Actividad del cliente']=\
-        RFM_Customers['Recency Actual'].apply(lambda r: Estado_R(r)  )
-        
-        O por DF_Estado_R(DF)
-        """
-        if(x<=90):
-            return('Activo')
-        elif(90<x<=365):
-            return('Fugandose')
-        else:
-            return('Fugado')
-         
-    def DF_Estado_R(DF):
-        """
-        Cortes 0-90|91-365|366-
-        Uso: Estado_R
-        Requiere columna: 'Recency Actual'
+def Estado_R(x):
+    """
+    Cortes 0-89|90-364|365-
+    Uso:
+    RFM_Customers['Actividad del cliente']=\
+    RFM_Customers['Recency Actual'].apply(lambda r: Estado_R(r)  )
+    
+    O por DF_Estado_R(DF)
+    """
+    if(x<=90):
+        return('Activo')
+    elif(90<x<=365):
+        return('Fugandose')
+    else:
+        return('Fugado')
+     
+def DF_Estado_R(DF):
+    """
+    Cortes 0-90|91-365|366-
+    Uso: Estado_R
+    Requiere columna: 'Recency Actual'
 
-        DF_Estado_R(RFM_Customers)
-        RFM_Customers.head()
-            """
-        DF['Actividad del cliente']=\
-        DF['Recency Actual'].apply(lambda r: Estado_R(r) )
-        return(DF)
+    DF_Estado_R(RFM_Customers)
+    RFM_Customers.head()
+        """
+    DF['Actividad del cliente']=\
+    DF['Recency Actual'].apply(lambda r: Estado_R(r) )
+    return(DF)
 
 
 #=========================================
 # Ajuste de columnas 
 #=========================================
+def data_Norm_satandar(dx,Normalizad_col,drop_columns):
+    """
+    Pasa un listado de columnas a Ln
+    
+        dx: dataframe
+        Normalizad_col: (Array) Listado de columnas a escalar 
+        drop_columns: (True or False)  Eliminar columnas del listado
+    """
+    df_x=dx.copy()
+    for s in Normalizad_col:
+        if(s in df_x.columns):
+            mean_df=df_x[s].mean()
+            std_df_s=df_x[s].std()
+            df_x[s + ' (Normalizado)']=\
+            df_x[s].apply(lambda x: (x-mean_df)/(std_df_s))
+        else:
+            print('No se pudo transformar ',s)
+    if(drop_columns):
+        df_x=df_x.drop(columns = Normalizad_col)
+    return(df_x)
+
+
 
 def data_Min_Max(dx,Min_Max_col,drop_columns):
     """
     Pasa un listado de columnas a Ln
-    
+    No se recimienda usar cuando se presenta outliers
         dx: dataframe
         Min_Max_col: (Array) Listado de columnas a escalar 
         drop_columns: (True or False)  Eliminar columnas del listado
@@ -64,7 +91,7 @@ def data_Min_Max(dx,Min_Max_col,drop_columns):
             Min_df_s=df_x[s].min()
             Max_df_s=df_x[s].max()
             df_x[s + ' (Escala Min Max)']=\
-            df_x[s].apply(lambda x: (x-Min_df_s)/Max_df_s )
+            df_x[s].apply(lambda x: (x-Min_df_s)/(Max_df_s -Min_df_s))
         else:
             print('No se pudo transformar ',s)
     if(drop_columns):
@@ -80,6 +107,8 @@ def data_ln(dx,ln_col,drop_columns):
         dx: dataframe
         ln_col: (Array) Listado de columnas a escalar 
         drop_columns: (True or False)  Eliminar columnas del listado
+
+    import numpy as np
     """
     df_x=dx.copy()
     for s in ln_col:
@@ -124,11 +153,11 @@ def Df_Pond_FxM(RFM_df ,  Col_FM , weighted_F,weighted_M):
 
 
 #====================================================================================
-# K-means 
+# Curva K-means definición del K Cluster  
 #=========================================
 
 
-def Curva_kmeans(D_Clientes_Frec,Col):
+def Curva_kmeans(D_Clientes_Frec,Col,Normal_Standar_Boolean=False):
     
     """
     Entrega una curva 
@@ -149,9 +178,9 @@ def Curva_kmeans(D_Clientes_Frec,Col):
     X_std=X[Col].copy()
 
 
-    
-    X_std =\
-    pd.DataFrame(StandardScaler().fit_transform(X_std),columns=X_std.columns)
+    if(Normal_Standar_Boolean):
+        X_std =\
+        pd.DataFrame(StandardScaler().fit_transform(X_std),columns=X_std.columns)
 
 
     #kmeans = KMeans(n_clusters=6)
@@ -174,35 +203,48 @@ def Curva_kmeans(D_Clientes_Frec,Col):
     return(X_std)
 
 
-def def_Col_cluster(D_Clientes, Col 
-                    , Numero_de_clusters, ln_Col_tra=False):
 
-#     print(Numero_de_clusters)
-
-    # Col=list(D_Clientes.columns)#=D_Clientes.fillna(0)
-    # Col=Col[Col.index('Frecuencia mes promedio'):]
-    # Col
-
-    X=D_Clientes.fillna(0).copy()
-    if(ln_Col_tra):
-        X_std =data_ln(X[Col],Col,True).copy()
-    X_std=X[Col].copy()
-#     for s in ['Frecuency Actual del Cliente',
-#              'Monetary Actual']:
-#         if(s in Col):
-#             print(s)
-#             X_std[s]=\
-#             X_std[s].apply(lambda x: np.log(x))
-    
-    #from sklearn.preprocessing import StandardScaler
-    
-    
-    X_std = pd.DataFrame(StandardScaler().fit_transform(X_std),columns=X_std.columns)
-    
 #=========================================
 # Modelo Kmenas
 #=========================================
-    #from sklearn.cluster import KMeans
+def def_Col_cluster(D_Clientes, Col 
+                    ,Numero_de_clusters
+                    ,ln_Col_tra=False
+                    ,Normal_Standar_Boolean =False
+                    ):
+    """
+    Este modelo no considera variables categoricas
+    D_Clientes:DataFrame con las columnas a utilizar
+    Col: Atributos a utilizar para el clustering, 
+        Array con listado de columnas a usar.
+    ,ln_Col_tra=False, True if se requiere hacer escalado Ln
+    ,Max_Min_Bul=True, True if  se requiere hacer escalado Min Max
+    
+    Utiliza:
+    data_ln()
+    from sklearn.preprocessing import StandardScaler
+    from sklearn.cluster import KMeans
+    import pandas as pd
+    """ 
+    X=D_Clientes[Col].fillna(0).copy()
+    
+    #if requiere estandarización Ln
+    if(ln_Col_tra):
+        X_std =data_ln(X[Col],Col,True).copy()
+    X_std=X[Col].copy()
+
+    #if requiere estandarización 
+    if(Standar_Boolean):
+        X_std = pd.DataFrame(
+                #Array, con la Estandarización
+                StandardScaler()\
+                .fit_transform(X_std)
+                ,columns=X_std.columns)
+    
+    #=========================================
+    # Modelo Kmenas
+    #=========================================
+    
     kmeans = KMeans(n_clusters=Numero_de_clusters)
     kfit = kmeans.fit(X_std)
     identified_clusters = kfit.predict(X_std)
@@ -211,12 +253,12 @@ def def_Col_cluster(D_Clientes, Col
     
     if( 'Frecuency Actual del Cliente' in X.columns ):
         X['F-1']= X['Frecuency Actual del Cliente'].apply(lambda x: x**(-1))
-    return(X)
+    return(X) 
 
 #==================================================================================
 # Función de desempeño del Cluster
 #
-#
+# Modelo Predictivo R2
 #
 #
 #
@@ -272,7 +314,7 @@ def Func_log_log_Tip_ind_cluster(Data_F,Ridge_mod):
     Data_F; DF de las caturaciones a utilizar
     Ridge_mod; True or False, si se desea Ridge o OLS
 
-    Requiere
+    # Requiere
     import sklearn
     import statsmodels.api as sm
     from sklearn.linear_model import Ridge

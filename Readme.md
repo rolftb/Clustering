@@ -33,10 +33,19 @@ Se definen las funciones del arrchivp `R_FM_Func.py`, Se estudia el K para R+FM 
 - Estado R
   - `Estado_R(X)` por apply
   - DF_Estado_R(DF) ajusta directamnte el DF ingresado
-- `data_Min_Max(dx,Min_Max_col,drop_columns)`
+
+- __Estandarizado Normalizado__
+  - 
+  - `pd.DataFrame(StandardScaler().fit_transform(X_std),columns=X_std.columns)`
+  - 
+  - 
+-__Esclaado Min Max__
+  
+    _No se recomienda cuando existe una amplitud de outlier muy grand, porque el realiza un desajuste muy grande.
+ `data_Min_Max(dx,Min_Max_col,drop_columns)`
   > Entrega un df copiado
   >> Ajusta las columnas del arreglo Min_Max_col
-  
+$x_{scaled}=\dfrac{x-min(x)}{max(x)-min(x)}$
   - dx dataframe
   - Min_Max_col: (Array) Listado de columnas a escalar
   - drop_columns: (True or False)  Eliminar columnas del listado
@@ -136,3 +145,6 @@ if(x<=90):
     1. [ ] Grafico 
     2. [ ] Grafico columna que representa los valoresd e cada cluster
 <!-- 11. [ ]  -->
+
+
+[Max Min scalar](https://towardsdatascience.com/everything-you-need-to-know-about-min-max-normalization-in-python-b79592732b79)
