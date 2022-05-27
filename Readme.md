@@ -35,10 +35,9 @@ Se definen las funciones del arrchivp `R_FM_Func.py`, Se estudia el K para R+FM 
   - DF_Estado_R(DF) ajusta directamnte el DF ingresado
 
 - __Estandarizado Normalizado__
-  - 
+ 
   - `pd.DataFrame(StandardScaler().fit_transform(X_std),columns=X_std.columns)`
-  - 
-  - 
+
 -__Esclaado Min Max__
   
     _No se recomienda cuando existe una amplitud de outlier muy grand, porque el realiza un desajuste muy grande.
