@@ -66,7 +66,7 @@ $x_{scaled}=\dfrac{x-min(x)}{max(x)-min(x)}$
 
 #### Ajuste de K-means
 
-- `Curva_kmeans(D_Clientes_Frec,Col)`
+- `Curva_kmeans(D_Clientes_Frec,Col,Normal_Standar_Boolean=False):`
     >Permite definir el numero de K segmentos de K-means.
 
 - `Columnas_def(X_std):`

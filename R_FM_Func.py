@@ -113,7 +113,6 @@ def data_ln(dx,ln_col,drop_columns):
     df_x=dx.copy()
     for s in ln_col:
         if(s in df_x.columns):
-#             print(s)
             df_x[s + ' (Escala ln)']=\
             df_x[s].apply(lambda x: np.log(x))
         else:
@@ -132,15 +131,8 @@ def Df_Pond_FxM(RFM_df ,  Col_FM , weighted_F,weighted_M):
     W_M pond de M
     Col_FM:(F,M)
     """
-
     df=RFM_df.copy()
-#     Ln_B=True
-#     Ln_B=False
-#     if(Ln_B):
-#         df['$(F \times W_F + M \times W_M)$']=df.apply(lambda x:
-#             x[ 'Frecuency Actual del Cliente' + ' (Escala ln)']* weighted_F +\
-#             x['Monetary Actual'+ ' (Escala ln)']*weighted_M,axis=1 )
-#     else:
+
     if((Col_FM[0] in df.columns)&(Col_FM[1] in df.columns)):
         df['$(F \times W_F + M \times W_M)$']=df.apply(lambda x:
             x[Col_FM[0]]* weighted_F +\
@@ -155,6 +147,7 @@ def Df_Pond_FxM(RFM_df ,  Col_FM , weighted_F,weighted_M):
 #====================================================================================
 # Curva K-means definición del K Cluster  
 #=========================================
+
 
 
 def Curva_kmeans(D_Clientes_Frec,Col,Normal_Standar_Boolean=False):
@@ -234,7 +227,7 @@ def def_Col_cluster(D_Clientes, Col
     X_std=X[Col].copy()
 
     #if requiere estandarización 
-    if(Standar_Boolean):
+    if(Normal_Standar_Boolean):
         X_std = pd.DataFrame(
                 #Array, con la Estandarización
                 StandardScaler()\
