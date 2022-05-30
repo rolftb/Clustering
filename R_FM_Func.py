@@ -219,7 +219,7 @@ def def_Col_cluster(D_Clientes, Col
     from sklearn.cluster import KMeans
     import pandas as pd
     """ 
-    X=D_Clientes[Col].fillna(0).copy()
+    X=D_Clientes.fillna(0).copy()
     
     #if requiere estandarización Ln
     if(ln_Col_tra):
