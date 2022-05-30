@@ -23,7 +23,7 @@ from sklearn.preprocessing import StandardScaler
 
 def Estado_R(x):
     """
-    Cortes 0-89|90-364|365-
+    Cortes 0-90|91-365|366-
     Uso:
     RFM_Customers['Actividad del cliente']=\
     RFM_Customers['Recency Actual'].apply(lambda r: Estado_R(r)  )
@@ -221,10 +221,13 @@ def def_Col_cluster(D_Clientes, Col
     """ 
     X=D_Clientes.fillna(0).copy()
     
+    X_std=X[Col].copy()
+
     #if requiere estandarización Ln
     if(ln_Col_tra):
         X_std =data_ln(X[Col],Col,True).copy()
-    X_std=X[Col].copy()
+    
+    
 
     #if requiere estandarización 
     if(Normal_Standar_Boolean):
@@ -288,25 +291,26 @@ def X_set(X,Ridge_mod):
         X_Set_Def['identified_clusters']=X_Set_Def['identified_clusters']\
                 .astype('category')
     #-----------------------------------------------------------------
-#     print(X_Set_Def.dtypes,'\n'+'='*50)
+    #     print(X_Set_Def.dtypes,'\n'+'='*50)
 
     # Dummies
     X_Set_Def=pd.get_dummies(X_Set_Def, drop_first=True)
     
-#      OLS requiere de un intercepto
+    #      OLS requiere de un intercepto
     if(Ridge_mod==False):
         X_Set_Def['Intecepto']=[1 for i in range(X_Set_Def.shape[0])]
     
     return(X_Set_Def)
 
-def Func_log_log_Tip_ind_cluster(Data_F,Ridge_mod):
+def Func_log_log_Tip_ind_cluster(Data_F,Ridge_mod,R2_boolean=True):
     """
     Entrega el (R train ,R Test)
     Columnas obligatorias:['Kilos Venta KG','Año','identified_clusters','Tipo de Semana']
 
     Data_F; DF de las caturaciones a utilizar
     Ridge_mod; True or False, si se desea Ridge o OLS
-
+    R2: True, Entrega la tupa que refleja el puntaje
+        False, imprime el R2 y entrega el modelo entrenado
     # Requiere
     import sklearn
     import statsmodels.api as sm
@@ -317,7 +321,7 @@ def Func_log_log_Tip_ind_cluster(Data_F,Ridge_mod):
     #===================================
     #Ajuste de los datos
     #-----------------------------------
-#     
+    #     
     X_Columnas=['Kilos Venta KG','Año','identified_clusters','Tipo de Semana']
     y_pred_Columna='Precio'
 
@@ -331,8 +335,8 @@ def Func_log_log_Tip_ind_cluster(Data_F,Ridge_mod):
 
     #Calculo de la correlación entre variables
     
-#     print('Correlación Variables sobre la Variable ', y_pred_Columna,
-#         '\n'+'-'*50+'\n' ,pd.merge(y.reset_index(),X.reset_index()).corr()[y_pred_Columna])
+    # print('Correlación Variables sobre la Variable ', y_pred_Columna,
+        # '\n'+'-'*50+'\n' ,pd.merge(y.reset_index(),X.reset_index()).corr()[y_pred_Columna])
 
     #===================================
     # Entrenamiento
@@ -348,31 +352,36 @@ def Func_log_log_Tip_ind_cluster(Data_F,Ridge_mod):
         #R Score 
         R_test=ridge.score(X_test, y_test)
         R_test=ridge.score(X_test, y_test)
-#         print("Training set score: {:.2f}".format(ridge.score(X_train, y_train)))
-#         print("Test set score: {:.2f}".format(ridge.score(X_test, y_test)))
-#         return(ridge)
-#         return(str("Training set score: {:.2f}".format(ridge.score(X_train, y_train)))
-#                +'  '
-#                 +str("Test set score: {:.2f}".format(ridge.score(X_test, y_test))))
-        return(
+
+        # return(str("Training set score: {:.2f}".format(ridge.score(X_train, y_train)))
+        #        +'  '
+        #         +str("Test set score: {:.2f}".format(ridge.score(X_test, y_test))))
+        if(R2_boolean):
+            return(
                 (ridge.score(X_train, y_train).round(3)),
-                (ridge.score(X_test, y_test).round(3))
-        )
+                (ridge.score(X_test, y_test).round(3)))
+        else:
+            print("Training set score: {:.2f}".format(ridge.score(X_train, y_train)))
+            print("Test set score: {:.2f}".format(ridge.score(X_test, y_test)))
+            return(ridge)
         
     else:
         mod = sm.OLS(y_train,X_train)
         fii = mod.fit()
-#         print('$R^2$ Data Train'  ,sklearn.metrics.r2_score(y_train,fii.predict()).round(3) )
-#         print('$R^2$ Data Test'  ,sklearn.metrics.r2_score(y_test,fii.predict(exog=X_test)).round(3))
-        return( #'$R^2$ Data Train' + 
+        if(R2_boolean):
+            return( #'$R^2$ Data Train' + 
                (sklearn.metrics.r2_score(y_train,fii.predict()).round(3) )
-#                 '$R^2$ Data Test'   + 
+                # '$R^2$ Data Test'   + 
                 ,(sklearn.metrics.r2_score(y_test,fii.predict(exog=X_test)).round(3))
                 )
-
+        else:
+            print('$R^2$ Data Train'  ,sklearn.metrics.r2_score(y_train,fii.predict()).round(3) )
+            print('$R^2$ Data Test'  ,sklearn.metrics.r2_score(y_test,fii.predict(exog=X_test)).round(3))
+            return(fii)
+            
         #==========================================
         # Todos los datos, desde ell 2018
         # $R^2$ Data Train 0.4378602682377155
         # $R^2$ Data Test 0.43860226392178925
-#         return(fii)
+        # return(fii)
 
