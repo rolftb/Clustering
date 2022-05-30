@@ -130,7 +130,7 @@ file_direct_O: Dirección de donde se ubican los DataFrames
 	                    data_i_M).shape)
 	DATA_i_RFM = pd.merge(pd.merge(data_i_R,data_i_F ),data_i_M)
 
-	del (data_i_R,data_i_F,data_i_M)
+	# del (data_i_R,data_i_F,data_i_M)
 	return(DATA_i_RFM)
 
 
@@ -226,9 +226,10 @@ def Ajuste_data_RFM(data):
 # Funciones destinadas a los atributos del Cliente
 #========================================================
 
-def Customers_csv_RFM():
+def Customers_csv_RFM(file_direct_O):
 	"""
 	# Se Cargan los datos de ventas con las caracteristicas de los clientes
+	requiere para ajustar los valores a Ajuste_Clientes_RFM(data)
 	"""
 
 	file_direct=file_direct_O+'Clientes_1010078_CT RFM'+'.csv'
@@ -247,7 +248,7 @@ def Customers_csv_RFM():
 
 	#elimina una columna en especifico
 	#DF_FULL.drop('Año natural', inplace=True, axis=1)
-	Clientes_i_RFM.head(1)
+	return Clientes_i_RFM
 
 # =============================================================================
 # Ajustar la data
@@ -256,12 +257,12 @@ def Ajuste_Clientes_RFM(data):
     start_time = time.time()
     df=data.copy()
 
-# =============================================================================
-# Proceso iterativo Pasar a numero
-#------------------------------------------------------------------------------
+	# =============================================================================
+	# Proceso iterativo Pasar a numero
+	# ------------------------------------------------------------------------------
 
-#----------------------------------------------------------------------
-# Float
+	# ----------------------------------------------------------------------
+	# Float
     for i in [
             #RFM
             'Recency Actual'
@@ -280,17 +281,17 @@ def Ajuste_Clientes_RFM(data):
         #.astype('int64')
         
         
-#------------------------------------------------------------------------ 
+	# ------------------------------------------------------------------------ 
     # Int
     for i in [
                 #RFM
                 'Recency Actual'
-#                 ,'Frecuency Actual del Cliente'
-#                 ,'Ingreso de Venta Promedio'
+                # ,'Frecuency Actual del Cliente'
+                # ,'Ingreso de Venta Promedio'
 
-                #Val Fact
-#                 ,'Kilos Venta KG Promedio'
-#                 ,'Precio Promedio'
+                # Val Fact
+                # ,'Kilos Venta KG Promedio'
+                # ,'Precio Promedio'
 
                 # Val historicos (ind del producto)
                 ,'Año Creación Promedio'
@@ -300,9 +301,9 @@ def Ajuste_Clientes_RFM(data):
         
 
 
-#==========================================================================================
-# Ajuste de las fechas
-#-----------------------------------------------------------------------------------------
+	#==========================================================================================
+	# Ajuste de las fechas
+	#-----------------------------------------------------------------------------------------
     for date in ['Fecha ultima Compra','Fecha Creacion']:
         df[date] = df[date].apply(lambda x: 
                                             datetime.datetime.strptime(str(x),
@@ -312,3 +313,36 @@ def Ajuste_Clientes_RFM(data):
     end_time = time.time()
     time_convert(end_time - start_time)
     return    df.rename(columns={'Ingreso de Venta Promedio':'Monetary Actual'})
+#====================================================================================================
+# Val_Customers_Weeks_1010078_CT 2018_2021
+#======================================================================
+
+def Val_Clientes_weeks(file_direct_O):
+	# Se Cargan los datos de ventas con las caracteristicas de los clientes
+	#=====================================================================
+
+	file_direct=file_direct_O+'Val_Customers_Weeks_1010078_CT 2018_2021'+'.csv'
+	col_names=pd.read_csv(file_direct,
+	                      encoding="utf-8",sep=";",nrows=0).columns
+
+	types_dict = {col: str for col in list(col_names)}
+
+	Clientes_Valor_Week= pd.read_csv(file_direct,
+	                   encoding="utf-8",sep=";",dtype=types_dict
+	                      ,index_col='Unnamed: 0'
+	                      )
+
+	# Se debe agregar el parametro ,index_col='Unnamed: 0' 
+	# de esta froma tal vez se pueda hacer un merge en base al indice
+
+	#elimina una columna en especifico
+	#DF_FULL.drop('Año natural', inplace=True, axis=1)
+	Clientes_Valor_Week.head()
+	return Clientes_Valor_Week
+#==============================================================
+"""
+Falta:
+1. [ ] Atributo promedio y coeficiente de variación del ticket o lote de compra Kg del cliente.
+2. [ ] Atributo incorporación del tipo de semana a los datos de las facturaciones electronicas
+
+"""

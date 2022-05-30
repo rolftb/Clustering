@@ -138,6 +138,7 @@ if(x<=90):
     - [X] guardado en PDF del grafico para los dif valores
 9. [ ] Metricas para comprar modelos
     - [ ] Estudiar publicación de RFM
+      - [ ] Cómo se presenta la prueba del K-means, que metricas utiliza, cual es su experimento con los clusters.
     - [X] Definir un objetivo en comun de los tipos de modelos __(PREDICICÓND DEL PRECIO)__
     - [X] Desempeño de un modelo predictivo, Log-Log que considera.
 10. [ ] Resultado o Descripción del Cluster contruido.
@@ -145,5 +146,7 @@ if(x<=90):
     2. [ ] Grafico columna que representa los valoresd e cada cluster
 <!-- 11. [ ]  -->
 
-
-[Max Min scalar](https://towardsdatascience.com/everything-you-need-to-know-about-min-max-normalization-in-python-b79592732b79)
+## Trabajo con datos
+1. [ ] Py que abra archivos de datos facilmente, con poco texto
+  1. [ ] Atributo promedio y coeficiente de variación del ticket o lote de compra Kg del cliente.
+  2. [ ] Atributo incorporación del tipo de semana a los datos de las facturaciones electronicas
