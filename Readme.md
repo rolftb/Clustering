@@ -13,14 +13,9 @@
   - $A:$ Año el cual se ejecuta la venta.(_Variable discreta_)
   - $w_i$ Semana $i$ del conjunto de semanas $W$
 
-
-
-
-
 ## A_2 (lineal sin Año)) Construccion modelo [Tradicional 1010078]
 
 Se definen las funciones del arrchivp `R_FM_Func.py`, Se estudia el K para R+FM y se evalua los valores de $W_F$ $W_M$.
-
 
 ## R_FM_Func.py
 
@@ -35,7 +30,7 @@ Se definen las funciones del arrchivp `R_FM_Func.py`, Se estudia el K para R+FM 
   - DF_Estado_R(DF) ajusta directamnte el DF ingresado
 
 - __Estandarizado Normalizado__
- 
+
   - `pd.DataFrame(StandardScaler().fit_transform(X_std),columns=X_std.columns)`
 
 -__Esclaado Min Max__
@@ -45,11 +40,12 @@ Se definen las funciones del arrchivp `R_FM_Func.py`, Se estudia el K para R+FM 
   > Entrega un df copiado
   >> Ajusta las columnas del arreglo Min_Max_col
 $x_{scaled}=\dfrac{x-min(x)}{max(x)-min(x)}$
-  - dx dataframe
-  - Min_Max_col: (Array) Listado de columnas a escalar
-  - drop_columns: (True or False)  Eliminar columnas del listado
+
+- dx dataframe
+- Min_Max_col: (Array) Listado de columnas a escalar
+- drop_columns: (True or False)  Eliminar columnas del listado
 - `data_ln(dx,ln_col,drop_columns)`
- 
+
      >Pasa un listado de columnas a Ln y entrga una copia del dataframe
   - dx: dataframe
   - ln_col: (Array) Listado de columnas a escalar
@@ -142,11 +138,11 @@ if(x<=90):
     - [X] Definir un objetivo en comun de los tipos de modelos __(PREDICICÓND DEL PRECIO)__
     - [X] Desempeño de un modelo predictivo, Log-Log que considera.
 10. [ ] Resultado o Descripción del Cluster contruido.
-    1. [ ] Grafico 
+    1. [ ] Grafico
     2. [ ] Grafico columna que representa los valoresd e cada cluster
-<!-- 11. [ ]  -->
 
 ## Trabajo con datos
+
 1. [ ] Py que abra archivos de datos facilmente, con poco texto
-  1. [ ] Atributo promedio y coeficiente de variación del ticket o lote de compra Kg del cliente.
-  2. [ ] Atributo incorporación del tipo de semana a los datos de las facturaciones electronicas
+2. [ ] Atributo promedio y coeficiente de variación del ticket o lote de compra Kg del cliente.
+3. [ ] Atributo incorporación del tipo de semana a los datos de las facturaciones electronicas
