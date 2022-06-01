@@ -146,3 +146,12 @@ if(x<=90):
 1. [ ] Py que abra archivos de datos facilmente, con poco texto
 2. [ ] Atributo promedio y coeficiente de variación del ticket o lote de compra Kg del cliente.
 3. [ ] Atributo incorporación del tipo de semana a los datos de las facturaciones electronicas
+
+## Apuntes
+
+1. [ ] Se esta definiendo dispersión de M y F.
+2. [ ] Escribir que que implica cada numeración.
+3. [ ] Cambiar a cluster etiquetado
+4. [ ] Realizar tabla que describa cada cluster.
+5. [ ] Con la tabla echa es mas facil sirve para describir.
+
