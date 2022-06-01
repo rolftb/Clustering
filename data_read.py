@@ -36,17 +36,23 @@ Dic_col={'Base':
                  ['Ticket Promedio Actual','Ticket CV Actual']
         }
 
+
+
 #=========================================
+#Abre y junta los datos referidos a la facuraciones electronicas
+# file_direct_O: Dirección de donde se ubican los DataFrames
+#=========================================
+
 def RFM_Data_func(file_direct_O):
-"""
-Abre y junta los datos referidos a la facuraciones electronicas
-file_direct_O: Dirección de donde se ubican los DataFrames
+	"""
+	Abre y junta los datos referidos a la facuraciones electronicas
+	file_direct_O: Dirección de donde se ubican los DataFrames
 
-"""
+	"""
 
-#======================================================================
-# CSV Rread
-#=====================================================================
+	#======================================================================
+	# CSV Rread
+	#=====================================================================
 
 
 	#======================================================================
@@ -118,10 +124,10 @@ file_direct_O: Dirección de donde se ubican los DataFrames
 	print(file_direct)
 	print('M',data_i_M.shape)
 
-# ===================================================================
-# Merge
-# RFM
-#=====================================================================
+	# ===================================================================
+	# Merge
+	# RFM
+	#=====================================================================
 	print('------------------------------------------------')
 	print('Merge')
 	print('RF',(pd.merge(data_i_R,data_i_F )).shape)
@@ -135,92 +141,91 @@ file_direct_O: Dirección de donde se ubican los DataFrames
 
 
 # =============================================================================
-# Ajustar la data
+# Ajustar la data RFM_Data_func
 # =============================================================================
 def Ajuste_data_RFM(data):
-	"""
-	Destinado a ajustar los valores de la funcion RFM_Data_func
+    """
+    Destinado a ajustar los valores de la funcion RFM_Data_func
 
-	columnas como 
-	    for i in ['Kilos Venta KG'
-              ,'Precio'
-	#			RFM
-              ,'Recency días'
-              ,'Frecuency_Row'
-              ,'Monetary'
-              ,'Ingreso de Venta CLP'
-
-	"""
-    start_time = time.time()
-
-    df=data.copy()
-
-	# =================================
-	# ELiminare dodos los valores Nan
-	# =================================
+    columnas como 
+    for i in ['Kilos Venta KG'
+        ,'Precio'
+        ,'Recency días'
+        ,'Frecuency_Row'
+        ,'Monetary'
+        ,'Ingreso de Venta CLP'
+        
+    """
+    # data_f=data.copy()
+    df = data.copy()
+    # df=data_f
+    # =================================
+    # ELiminare dodos los valores Nan
+    # =================================
     #for i in df.columns.to_list():
     #    df=df[df[i].notna()]
 
-    
-    
-	#=================================
-	# Proceso Recency a Int 
-	#=================================
-        
+
+
+    #=================================
+    # Proceso Recency a Int 
+    #=================================
+
+
     df['Recency días']=df['Recency'].apply( lambda x:  x.split(' ')[0])
-    
-	#=================================
-	# Proceso iterativo Pasar a numero
-	#=================================
+
+    #=================================
+    # Proceso iterativo Pasar a numero
+    #=================================
 
     for i in ['Kilos Venta KG'
-              # ,'Venta Neta'
-              ,'Precio'
-              # RFM
-              ,'Recency días'
-              ,'Frecuency_Row'
-              ,'Monetary'
-              ,'Ingreso de Venta CLP'
-             ]:
-        
+        # ,'Venta Neta'
+        ,'Precio'
+        # RFM
+        ,'Recency días'
+        ,'Frecuency_Row'
+        ,'Monetary'
+        ,'Ingreso de Venta CLP'
+        ]:
+
         df[i]=df[i].astype('float64').astype('int64')
+
     for i in ['Kilos Venta KG'
-              # ,'Venta Neta'
-              ,'Precio'
-              # RFM
-              ,'Recency días'
-              # ,'Frecuency_Row'
-              # ,'Monetary'
-               ,'Ingreso de Venta CLP'
-             ]:
+        # ,'Venta Neta'
+        ,'Precio'
+        # RFM
+        ,'Recency días'
+        # ,'Frecuency_Row'
+        # ,'Monetary'
+        ,'Ingreso de Venta CLP'
+        ]:
         df[i]=df[i].astype('int64')     
 
 
 
-	# ==========================================================================================
-	# Ajuste de las fechas
-	#-----------------------------------------------------------------------------------------
+    # ==========================================================================================
+    # Ajuste de las fechas
+    #-----------------------------------------------------------------------------------------
     df["Día natural"] = df["Día natural"].apply(lambda x: 
-                                                datetime.datetime.strptime(str(x),
-                                                                           '%Y-%m-%d').date())
-    
+                                            datetime.datetime.strptime(str(x),
+                                                                    '%Y-%m-%d').date())
+
     #Separacion fecha
-    
+
     #ELiminado de DF_FULL
     #df['Semana']=df["Día natural"].apply(lambda x: x.isocalendar()[1] )
     #df['Mes']=df["Día natural"].apply(lambda x: x.month)
     #df['Año']=df["Día natural"].apply(lambda x: x.year)
     #df['Semana']=df['Semana'].astype('int64')
-    
+
     # df['Año']=df['Año'].astype('int64')
     # D_W=['Lunes','Martes','Miércoles','Jueves', 'Viernes','Sábado','Domingo']
     # df['Día Semana']=df["Día natural"].apply(lambda x: D_W[x.isocalendar()[2] -1])
     # df=df[df['Día Semana']!='Domingo']
-    
+
     print(df.dtypes)
-    end_time = time.time()
-    time_convert(end_time - start_time)
-    return df
+
+    return(df)
 
 #========================================================
 # Funciones destinadas a los atributos del Cliente
@@ -254,7 +259,7 @@ def Customers_csv_RFM(file_direct_O):
 # Ajustar la data
 # =============================================================================
 def Ajuste_Clientes_RFM(data):
-    start_time = time.time()
+ 
     df=data.copy()
 
 	# =============================================================================
@@ -310,8 +315,7 @@ def Ajuste_Clientes_RFM(data):
                                                                            '%Y-%m-%d').date())
     
     print(df.dtypes)
-    end_time = time.time()
-    time_convert(end_time - start_time)
+ 
     return    df.rename(columns={'Ingreso de Venta Promedio':'Monetary Actual'})
 #====================================================================================================
 # Val_Customers_Weeks_1010078_CT 2018_2021
@@ -337,9 +341,98 @@ def Val_Clientes_weeks(file_direct_O):
 
 	#elimina una columna en especifico
 	#DF_FULL.drop('Año natural', inplace=True, axis=1)
-	Clientes_Valor_Week.head()
+	# Clientes_Valor_Week.head()
+
+	for c in Clientes_Valor_Week.columns:
+		if(c!='Cliente'):
+			Clientes_Valor_Week[c]=\
+				Clientes_Valor_Week[c].astype('float64')
+	print(Clientes_Valor_Week.dtypes)
 	return Clientes_Valor_Week
 #==============================================================
+#  Agrego a la data CLiente_iRFM los atributos relacionados al Ticket
+#==============================================================
+def Customer_KG_Mean(data_i_RFM, Clientes_i_RFM, Clientes_Valor_Week):
+	"""
+	data_i_RFM: Facturas
+	Clientes_i_RFM: Atributos RFM
+	Clientes_Valor_Week: Valoracion de los clientes
+	"""
+	df= data_i_RFM
+	#----------------------------------------------------------------------------
+	#Promedio
+	df_g=df[['Cliente','Kilos Venta KG']].groupby('Cliente')\
+        .mean().reset_index()\
+        .rename(columns={'Kilos Venta KG':Dic_col['Ticket Customers'][0]})
+	# df_g
+	#----------------------------------------------------------------------------
+	#Desviación estandar
+	df_G=df[['Cliente','Kilos Venta KG']].groupby('Cliente')\
+        .std().reset_index()\
+        .rename(columns={'Kilos Venta KG':'Ticket std Actual'})
+
+	print(
+	df_G.isnull().sum()
+	)
+	df_G=df_G.fillna(0)
+	#----------------------------------------------------------------------------
+	# Merge Coeficiente de variación
+	df_group=pd.merge(df_g,df_G,how='right')
+
+	df_group[Dic_col['Ticket Customers'][1]]=\
+	df_group.apply(lambda x: 
+				x['Ticket std Actual']/
+				x[Dic_col['Ticket Customers'][0]] ,axis=1)
+	#----------------------------------------------------------------------------
+	Clientes_i=pd.merge(Clientes_i_RFM,df_group)
+	print(Clientes_i.shape)
+	
+	Clientes_i=pd.merge(Clientes_Valor_Week,Clientes_i)
+	print(Clientes_i.shape)
+	Clientes_i['$F^{-1}$ Actual']=\
+		Clientes_i[Dic_col['RFM Customers'][1]].apply( lambda x: x**(-1))
+	print(Clientes_i.shape)
+	return(Clientes_i)
+
+#======================================================================
+# Tipo de semana 
+#======================================================================
+
+def Tipo_de_semana_Model(file_direct_O):
+	#======================================================================
+	# Se Cargan los datos de ventas con las caracteristicas de los clientes
+	#=====================================================================
+
+	file_direct=\
+	file_direct_O+'Weeks_clusters_1010078_CT_2018_2021 Other val 2020_2021'+'.csv'
+
+	col_names=pd.read_csv(file_direct,
+						encoding="utf-8",sep=";",nrows=0).columns
+
+	types_dict = {col: str for col in list(col_names)}
+
+	Df_Week= pd.read_csv(file_direct,
+					encoding="utf-8",sep=";",dtype=types_dict
+						,index_col='Unnamed: 0'
+						)
+
+	# Se debe agregar el parametro ,index_col='Unnamed: 0' 
+	# de esta froma tal vez se pueda hacer un merge en base al indice
+
+	#elimina una columna en especifico
+	#DF_FULL.drop('Año natural', inplace=True, axis=1)
+	# Df_Week.head(1)
+	for c in Df_Week.columns:
+		if(
+		(c!='Variable')&(c!='Atributo')&(c!='Semana')&(c!='Tipo de Semana')
+		):
+			Df_Week[c]=\
+				Df_Week[c].astype('float64')
+
+	print(Df_Week.dtypes)
+	return(Df_Week)
+
+
 """
 Falta:
 1. [ ] Atributo promedio y coeficiente de variación del ticket o lote de compra Kg del cliente.
