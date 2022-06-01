@@ -431,7 +431,18 @@ def Tipo_de_semana_Model(file_direct_O):
 
 	print(Df_Week.dtypes)
 	return(Df_Week)
-
+def Merge_Week(file_direct_O,data_i_RFM):
+	"""
+	file_direct_O: Dirección o ubicacion del dt week
+	data_i_RFM: Data Facturas, con columna Semana a incoorporar Tipo de semana
+	"""
+	Df_Week=Tipo_de_semana_Model(file_direct_O)
+	data_i_RFM_week=pd.merge(
+	Df_Week[['Semana','Tipo de Semana']]
+	,data_i_RFM#[['Semana','Año']]
+	,how='inner')
+	print(data_i_RFM.shape[0] - data_i_RFM_week.shape[0])
+	return(data_i_RFM_week)
 
 """
 Falta:
