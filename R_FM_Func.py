@@ -7,12 +7,15 @@ import matplotlib.pyplot as plt
 import sklearn
 import statsmodels.api as sm
 from sklearn.linear_model import Ridge
+from sklearn.model_selection import train_test_split
+
 
 #============================================
 # Curva K-means Regla del codo
 from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
+
 
 
 
@@ -52,7 +55,7 @@ def DF_Estado_R(DF):
 
 
 #=========================================
-# Ajuste de columnas 
+# Ajuste de columnas NORMALIZADO
 #=========================================
 def data_Norm_satandar(dx,Normalizad_col,drop_columns):
     """
@@ -76,7 +79,9 @@ def data_Norm_satandar(dx,Normalizad_col,drop_columns):
     return(df_x)
 
 
-
+#=========================================
+# Ajuste de columnas MIN MAXX
+#=========================================
 def data_Min_Max(dx,Min_Max_col,drop_columns):
     """
     Pasa un listado de columnas a Ln
@@ -99,7 +104,9 @@ def data_Min_Max(dx,Min_Max_col,drop_columns):
     return(df_x)
 
 
-
+#=========================================
+# Ajuste de columnas LN
+#=========================================
 def data_ln(dx,ln_col,drop_columns):
     """
     Pasa un listado de columnas a Ln
@@ -122,7 +129,9 @@ def data_ln(dx,ln_col,drop_columns):
     return(df_x)
 
 
-
+#=========================================
+# COLUMNA FxM
+#=========================================
 def Df_Pond_FxM(RFM_df ,  Col_FM , weighted_F,weighted_M):
     """
     Entrega un df:
@@ -148,12 +157,11 @@ def Df_Pond_FxM(RFM_df ,  Col_FM , weighted_F,weighted_M):
 # Curva K-means definición del K Cluster  
 #=========================================
 
-
-
 def Curva_kmeans(D_Clientes_Frec,Col,Normal_Standar_Boolean=False):
-    
     """
-    Entrega una curva 
+    Entrega una TUPLA 
+    (Curva,DATAFRAME)
+    Permite definir el numero de K segmentos de K-means.
 
 
     from sklearn.cluster import KMeans
@@ -188,16 +196,16 @@ def Curva_kmeans(D_Clientes_Frec,Col,Normal_Standar_Boolean=False):
       SSE.append(km.inertia_)
 
     # plot
-
     plt.plot(range(1, 21), SSE,'-o', color='black')
-    plt.xlabel('Número of clusters')
+    plt.xlabel('Número de clusters')
     plt.ylabel('SSE')
+    Z_fig = plt.gcf()
     plt.show()
-    return(X_std)
+    return(Z_fig,X_std)
 
 
 
-#=========================================
+#=============================================================================================
 # Modelo Kmenas
 #=========================================
 def def_Col_cluster(D_Clientes, Col 
@@ -237,9 +245,10 @@ def def_Col_cluster(D_Clientes, Col
                 .fit_transform(X_std)
                 ,columns=X_std.columns)
     
-    #=========================================
+    #-----------------------------------------
     # Modelo Kmenas
-    #=========================================
+    #-----------------------------------------
+
     
     kmeans = KMeans(n_clusters=Numero_de_clusters)
     kfit = kmeans.fit(X_std)
