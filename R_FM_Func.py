@@ -212,6 +212,7 @@ def def_Col_cluster(D_Clientes, Col
                     ,Numero_de_clusters
                     ,ln_Col_tra=False
                     ,Normal_Standar_Boolean =False
+                    
                     ):
     """
     Este modelo no considera variables categoricas
@@ -221,12 +222,21 @@ def def_Col_cluster(D_Clientes, Col
     ,ln_Col_tra=False, True if se requiere hacer escalado Ln
     ,Max_Min_Bul=True, True if  se requiere hacer escalado Min Max
     
+    random_stateint, RandomState instance or None, default=None
+    Determines random number generation for centroid initialization. Use an int to make the randomness deterministic. 
+
+
+
+
     Utiliza:
     data_ln()
     from sklearn.preprocessing import StandardScaler
     from sklearn.cluster import KMeans
     import pandas as pd
     """ 
+    
+    random_state_K=10
+
     X=D_Clientes.fillna(0).copy()
     
     X_std=X[Col].copy()
@@ -250,7 +260,7 @@ def def_Col_cluster(D_Clientes, Col
     #-----------------------------------------
 
     
-    kmeans = KMeans(n_clusters=Numero_de_clusters)
+    kmeans = KMeans(n_clusters=Numero_de_clusters,random_state=random_state_K)
     kfit = kmeans.fit(X_std)
     identified_clusters = kfit.predict(X_std)
     X['identified_clusters']=identified_clusters
