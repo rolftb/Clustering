@@ -156,3 +156,10 @@ if(x<=90):
 4. [X] Realizar tabla que describa cada cluster.
 5. [X] Con la tabla echa es mas facil sirve para describir.
 
+# Falta en R+FM
+
+1. [ ] Realizar tabla descriptiva con todos los atributos de los clientes.
+2. [ ] Implementar Graficos, del comportamiento de los clientes. 
+   1. [ ] Copiar graficos presentación
+   2. [ ] Ver graficos utilizados en el area de analisis de datos
+3. [ ] 
