@@ -33,7 +33,7 @@ Se definen las funciones del arrchivp `R_FM_Func.py`, Se estudia el K para R+FM 
 
   - `pd.DataFrame(StandardScaler().fit_transform(X_std),columns=X_std.columns)`
 
--__Esclaado Min Max__
+- __Esclaado Min Max__
   
     _No se recomienda cuando existe una amplitud de outlier muy grand, porque el realiza un desajuste muy grande.
  `data_Min_Max(dx,Min_Max_col,drop_columns)`
@@ -41,24 +41,24 @@ Se definen las funciones del arrchivp `R_FM_Func.py`, Se estudia el K para R+FM 
   >> Ajusta las columnas del arreglo Min_Max_col
 $x_{scaled}=\dfrac{x-min(x)}{max(x)-min(x)}$
 
-- dx dataframe
-- Min_Max_col: (Array) Listado de columnas a escalar
-- drop_columns: (True or False)  Eliminar columnas del listado
+  - dx dataframe
+  - Min_Max_col: (Array) Listado de columnas a escalar
+  - drop_columns: (True or False)  Eliminar columnas del listado
 - `data_ln(dx,ln_col,drop_columns)`
 
-     >Pasa un listado de columnas a Ln y entrga una copia del dataframe
-  - dx: dataframe
-  - ln_col: (Array) Listado de columnas a escalar
-  - drop_columns: (True or False)  Eliminar columnas del listado
+ > Pasa un listado de columnas a Ln y entrga una copia del dataframe
+ > - dx: dataframe
+ > - ln_col: (Array) Listado de columnas a escalar
+ > - drop_columns: (True or False)  Eliminar columnas del listado
 
 - `Df_Pond_FxM(RFM_df ,  Col_FM , weighted_F,weighted_M):`
 
    > Entrega una copia del df:
     >>con una nueva columna llamda $(F \times W_F + M \times W_M)$
-
-  - W_F pond de F
-  - W_M pond de M
-  - Col_FM:(F,M)
+   >
+   > - W_F pond de F
+   > - W_M pond de M
+   > - Col_FM:(F,M)
 
 #### Ajuste de K-means
 
@@ -90,8 +90,8 @@ Carece de sentido comprar un cliente que posee un comportamiento de compra actua
 La actividad de R, esta segmetnada en la siguiente secuencia:
 
 - 0 a 90 días __Activo__
-- 90 a 364 días __Fugandose__
-- 365 días en adelante __Fugado__
+- 91 a 365 días __Fugandose__
+- 366 días en adelante __Fugado__
 
 ```python
 if(x<=90):
@@ -104,13 +104,13 @@ if(x<=90):
 
 ### Modelos a desarrollar
 
-1. [ ] Clustering RFM
-2. [ ] Clustering RFM+(FxM)
-3. [ ] Clustering RF KG
-4. [ ] Clustering RFM KG
-5. [ ] Clustering RF KG Valoración
+1. [X] ~~Clustering RFM~~
+2. [X] Clustering RFM+(FxM)
+3. [X] ~~Clustering RF KG~~
+4. [X] ~~Clustering RFM KG~~
+5. [X] ~~Clustering RF KG Valoración~~
 6. [ ] Clustering RFM KG Valoración
-7. [ ] Clustering RFM KG Sencibilidad Jerarquica
+7. [ ]~~Clustering RFM KG Sencibilidad Jerarquica~~
 
 ## Pasos R+FM
 
@@ -122,6 +122,7 @@ if(x<=90):
    > Es muy simple el resultado y no vale la pena
 5. [X] Escalar datos de RFM+
     - [X] Aplicar escala Min_MAX
+    - [X] Aplicar escala Normalizado
     - [X] Aplicar escala Ln()
 6. [X] Preparación basica, Ajuste de datos
     - [X] Definir FxM, def que requere de $W_f$ $W_m$
@@ -139,19 +140,19 @@ if(x<=90):
     - [X] Desempeño de un modelo predictivo, Log-Log que considera.
 10. [ ] Resultado o Descripción del Cluster contruido.
     1. [ ] Grafico
-    2. [ ] Grafico columna que representa los valoresd e cada cluster
+    2. [ ] Grafico columna que representa los valores e cada cluster
 
 ## Trabajo con datos
 
-1. [ ] Py que abra archivos de datos facilmente, con poco texto
-2. [ ] Atributo promedio y coeficiente de variación del ticket o lote de compra Kg del cliente.
-3. [ ] Atributo incorporación del tipo de semana a los datos de las facturaciones electronicas
+1. [X] Py que abra archivos de datos facilmente, con poco texto
+2. [X] Atributo promedio y coeficiente de variación del ticket o lote de compra Kg del cliente.
+3. [X] Atributo incorporación del tipo de semana a los datos de las facturaciones electronicas
 
 ## Apuntes
 
-1. [ ] Se esta definiendo dispersión de M y F.
-2. [ ] Escribir que que implica cada numeración.
-3. [ ] Cambiar a cluster etiquetado
-4. [ ] Realizar tabla que describa cada cluster.
-5. [ ] Con la tabla echa es mas facil sirve para describir.
+1. [X] Se esta definiendo dispersión de M y F.
+2. [X] Escribir que que implica cada numeración.
+3. [X] Cambiar a cluster etiquetado
+4. [X] Realizar tabla que describa cada cluster.
+5. [X] Con la tabla echa es mas facil sirve para describir.
 
