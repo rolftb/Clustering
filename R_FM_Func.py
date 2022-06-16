@@ -59,6 +59,7 @@ def DF_Estado_R(DF):
 #=========================================
 def data_Norm_satandar(dx,Normalizad_col,drop_columns):
     """
+    ' (Normalizado)'
     Pasa un listado de columnas a Ln
     
         dx: dataframe
@@ -109,6 +110,7 @@ def data_Min_Max(dx,Min_Max_col,drop_columns):
 #=========================================
 def data_ln(dx,ln_col,drop_columns):
     """
+    ' (Escala ln)'
     Pasa un listado de columnas a Ln
     
         dx: dataframe
