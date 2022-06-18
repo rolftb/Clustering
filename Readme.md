@@ -133,14 +133,14 @@ if(x<=90):
 8. [X] Estructura iterativa, para dif valores de $W_f$ $W_m$
     - [X] Contruye un grafico de dispersión para los dif valores
     - [X] guardado en PDF del grafico para los dif valores
-9. [ ] Metricas para comprar modelos
+9. [X] Metricas para comprar modelos
     - [ ] Estudiar publicación de RFM
       - [ ] Cómo se presenta la prueba del K-means, que metricas utiliza, cual es su experimento con los clusters.
     - [X] Definir un objetivo en comun de los tipos de modelos __(PREDICICÓND DEL PRECIO)__
     - [X] Desempeño de un modelo predictivo, Log-Log que considera.
-10. [ ] Resultado o Descripción del Cluster contruido.
-    1. [ ] Grafico
-    2. [ ] Grafico columna que representa los valores e cada cluster
+10. [X] Resultado o Descripción del Cluster contruido.
+    1. [X] Grafico
+    2. [X] Grafico columna que representa los valores e cada cluster
 
 ## Trabajo con datos
 
@@ -158,8 +158,22 @@ if(x<=90):
 
 # Falta en R+FM
 
-1. [ ] Realizar tabla descriptiva con todos los atributos de los clientes.
-2. [ ] Implementar Graficos, del comportamiento de los clientes. 
-   1. [ ] Copiar graficos presentación
+1. [ ] __Descripción de los atributros__ 
+Realizar tabla descriptiva con todos los atributos de los clientes.
+   1. [X] Atributos r+fm
+      1. rfm descritivo
+      2. rfm promedio
+   2. [X] atributos valoración
+      1. Histograma con graficas
+   3. [ ] Aributos kg
+      1. [X] kg promedio
+      2. [ ] CV del tiket 
+3. [ ] Implementar Graficos, del comportamiento de los clientes. 
+   1. [X] Copiar graficos presentación
    2. [ ] Ver graficos utilizados en el area de analisis de datos
-3. [ ] 
+      1. [X] PRECIO POMEDIO MENSUAL
+      2. [x] KG PROMEDIO
+         1. [ ] Mensual no es necesario
+         2. [ ] ingreso en CLP(Opcional)
+      3. [ ] Distribución geografica (Opcional)
+4. [ ] 
