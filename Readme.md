@@ -158,22 +158,32 @@ if(x<=90):
 
 # Falta en R+FM
 
-1. [ ] __Descripción de los atributros__ 
+1. [X] __Descripción de los atributros__ 
 Realizar tabla descriptiva con todos los atributos de los clientes.
    1. [X] Atributos r+fm
       1. rfm descritivo
       2. rfm promedio
-   2. [X] atributos valoración
-      1. Histograma con graficas
-   3. [ ] Aributos kg
-      1. [X] kg promedio
-      2. [ ] CV del tiket 
-3. [ ] Implementar Graficos, del comportamiento de los clientes. 
+   2. [X]  Valoración \% atributos
+      1. [X] Histograma con graficas
+      2. [X] Tabla descriptiva
+   3. [X] Aributos kg
+      1. [X] kg promedio (Tabla e Histograma)
+      2. [X] CV del tiket (Tabla descriptiva)
+2. [X] Implementar Graficos, del __comportamiento de los clientes.__ 
    1. [X] Copiar graficos presentación
-   2. [ ] Ver graficos utilizados en el area de analisis de datos
+   2. [X] Ver graficos utilizados en el area de analisis de datos
       1. [X] PRECIO POMEDIO MENSUAL
-      2. [x] KG PROMEDIO
-         1. [ ] Mensual no es necesario
-         2. [ ] ingreso en CLP(Opcional)
-      3. [ ] Distribución geografica (Opcional)
-4. [ ] 
+      2. [x] ~~KG PROMEDIO~~
+         1. [X] ~~Mensual no es necesario~~
+      3. [X] ~~ingreso en CLP(Opcional)~~
+      4. [X] ~~Distribución geografica (Opcional)~~
+3. [ ] __Puntajes__
+   1. [ ] $R^2$ valores predictivos
+      1. [ ] T test
+      2. [ ] T Train
+      3. [ ] Intervalo de confianza bajo una muestra iterativa
+   2. [ ] Sklearn para validar el K, de k means
+      1. [ ] Silhouette Coefficient
+      2. [ ] Calinski-Harabasz Index
+      3. [ ] Índice Davies-Bouldin
+
