@@ -193,6 +193,7 @@ Realizar tabla descriptiva con todos los atributos de los clientes.
 1. [ ] Estandarizar datos a utilizar, recorgerlos del apartado final 
 2. [ ] sobreescribir el codig
 3. [ ] Estudiar los valores de W_f y W_M
+   1. [ ] probar los diferentes valores posibles para  W_f y W_M como se hizo en A2)
 4. [ ] Estudiar el valor de K
    1. [ ] Con la formula clasica
    2. [ ] con otras metricas de error
