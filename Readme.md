@@ -187,3 +187,14 @@ Realizar tabla descriptiva con todos los atributos de los clientes.
       2. [ ] Calinski-Harabasz Index
       3. [ ] Índice Davies-Bouldin
 
+# Falta en Full
+
+
+1. [ ] Estandarizar datos a utilizar, recorgerlos del apartado final 
+2. [ ] sobreescribir el codig
+3. [ ] Estudiar los valores de W_f y W_M
+4. [ ] Estudiar el valor de K
+   1. [ ] Con la formula clasica
+   2. [ ] con otras metricas de error
+5. [ ] realizar estructura para a nalizar el comportamiento de los clusters
+6. [ ] correr descripción de los graficos
