@@ -105,11 +105,11 @@ if(x<=90):
 ### Modelos a desarrollar
 
 1. [X] ~~Clustering RFM~~
-2. [X] Clustering RFM+(FxM)
-3. [X] ~~Clustering RF KG~~
-4. [X] ~~Clustering RFM KG~~
-5. [X] ~~Clustering RF KG Valoración~~
-6. [ ] Clustering RFM KG Valoración
+2. [ ] Clustering RFM+(FxM)
+3. [ ] ~~Clustering RF KG~~
+4. [ ] ~~Clustering RFM KG~~
+5. [ ] ~~Clustering RF KG Valoración~~
+6. [X] Clustering RFM KG Valoración
 7. [ ]~~Clustering RFM KG Sencibilidad Jerarquica~~
 
 ## Pasos R+FM
@@ -178,24 +178,35 @@ Realizar tabla descriptiva con todos los atributos de los clientes.
       3. [X] ~~ingreso en CLP(Opcional)~~
       4. [X] ~~Distribución geografica (Opcional)~~
 3. [ ] __Puntajes__
-   1. [ ] $R^2$ valores predictivos
-      1. [ ] T test
-      2. [ ] T Train
+   1. [x] $R^2$ valores predictivos
+      1. [x] T test
+      2. [x] T Train
       3. [ ] Intervalo de confianza bajo una muestra iterativa
-   2. [ ] Sklearn para validar el K, de k means
-      1. [ ] Silhouette Coefficient
-      2. [ ] Calinski-Harabasz Index
-      3. [ ] Índice Davies-Bouldin
+   2. [x] Sklearn para validar el K, de k means
+      1. [x] Silhouette Coefficient
+      2. [x] Calinski-Harabasz Index
+      3. [x] Índice Davies-Bouldin
 
 # Falta en Full
 
+1. [x] Estandarizar datos a utilizar, recorgerlos del apartado final.
+2. [x] sobreescribir el codig
+3. [ ] ~~Estudiar los valores de W_f y W_M~~
+   1. [ ] ~~probar los diferentes valores posibles para  W_f y W_M como se hizo en A2)~~
+4. [x] Estudiar el valor de K
+   1. [x] Con la forma clasica
+   2. [x] con otras metricas de error
+5. [x] realizar estructura para analizar el comportamiento de los clusters
+6. [x] correr descripción de los graficos
+7. [x] Etiquetado de los clusters
 
-1. [ ] Estandarizar datos a utilizar, recorgerlos del apartado final 
-2. [ ] sobreescribir el codig
-3. [ ] Estudiar los valores de W_f y W_M
-   1. [ ] probar los diferentes valores posibles para  W_f y W_M como se hizo en A2)
-4. [ ] Estudiar el valor de K
-   1. [ ] Con la formula clasica
-   2. [ ] con otras metricas de error
-5. [ ] realizar estructura para a nalizar el comportamiento de los clusters
-6. [ ] correr descripción de los graficos
+## Estudio del modelo OLS para cada cluster
+
+1. [ ] Montruir una muestra de $R^2$
+2. [ ] Extraer coeficientes y partes del modelo de regresión
+3. [ ] Estudiar porcentualmente el error de las predicciones realizadas
+   1. [ ] Error promedio
+   2. [ ] Intervalod e confianza
+   3. [ ] Margen de error
+   4. [ ] Comparar con el contenido visto en simulación para realizar comparación de medias.
+
