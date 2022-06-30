@@ -210,3 +210,57 @@ Realizar tabla descriptiva con todos los atributos de los clientes.
    3. [ ] Margen de error
    4. [ ] Comparar con el contenido visto en simulación para realizar comparación de medias.
 
+## Metricas de Clustering de desempeño
+[Link Sklearn](https://scikit-learn.org/stable/modules/clustering.html#calinski-harabasz-index)
+
+1. [SEE](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html):
+   > Suma de las distancias al cuadrado de las muestras a su centro de conglomerado más cercano, ponderada por los pesos de la muestra, si se proporcionan.
+   >> Sum of squared distances of samples to their closest cluster center, weighted by the sample weights if provided.
+2. [silhouette_score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.silhouette_score.html):
+   > The best value is 1 and the worst value is -1. Values near 0 indicate overlapping clusters. Negative values generally indicate that a sample has been assigned to the wrong cluster, as a different cluster is more similar.
+   
+   >If the ground truth labels are not known, evaluation must be performed using the model itself. The Silhouette Coefficient (sklearn.metrics.silhouette_score) is an example of such an evaluation, where a higher Silhouette Coefficient score relates to a model with better defined clusters. The Silhouette Coefficient is defined for each sample and is composed of two scores:
+   
+   >a: The mean distance between a sample and all other points in the same class.
+
+   >b: The mean distance between a sample and all other points in the next nearest cluster.
+
+   >The Silhouette Coefficient s for a single sample is then given as:
+   
+   >> $s = \frac{b - a}{max(a, b)}$
+   
+   >  The Silhouette Coefficient for a set of samples is given as the mean of the Silhouette Coefficient for each sample.
+
+   >Advantages
+      >> - The score is bounded between -1 for incorrect clustering and +1 for highly dense clustering. Scores around zero indicate overlapping clusters.
+      >> - The score is higher when clusters are dense and well separated, which relates to a standard concept of a cluster.
+
+   >Drawbacks
+   >>The Silhouette Coefficient is generally higher for convex clusters than other concepts of clusters, such as density based clusters like those obtained through DBSCAN.
+4. calinski_harabasz_score:
+   >If the ground truth labels are not known, the Calinski-Harabasz index (sklearn.metrics.calinski_harabasz_score) - also known as the Variance Ratio Criterion - can be used to evaluate the model, where a higher Calinski-Harabasz score relates to a model with better defined clusters.
+
+   >The index is the ratio of the sum of between-clusters dispersion and of within-cluster dispersion for all clusters (where dispersion is defined as the sum of distances squared):
+   
+   >Advantages
+      >>The score is higher when clusters are dense and well separated, which relates to a standard concept of a cluster.
+   >Drawbacks
+      >>The Calinski-Harabasz index is generally higher for convex clusters than other concepts of clusters, such as density based clusters like those obtained through DBSCAN. The score is fast to compute.
+5. davies_bouldin_score:
+
+   >If the ground truth labels are not known, the Davies-Bouldin index (sklearn.metrics.davies_bouldin_score) can be used to evaluate the model, where a lower Davies-Bouldin index relates to a model with better separation between the clusters.
+
+   >This index signifies the average ‘similarity’ between clusters, where the similarity is a measure that compares the distance between clusters with the size of the clusters themselves.
+
+   >Zero is the lowest possible score. Values closer to zero indicate a better partition.
+
+   >In normal usage, the Davies-Bouldin index is applied to the results of a cluster analysis as follows:
+
+   >Advantages
+      >>The computation of Davies-Bouldin is simpler than that of Silhouette scores.
+
+      >>The index is solely based on quantities and features inherent to the dataset as its computation only uses point-wise distances.
+   >Drawbacks
+      >>The Davies-Boulding index is generally higher for convex clusters than other concepts of clusters, such as density based clusters like those obtained from DBSCAN.
+
+      >>The usage of centroid distance limits the distance metric to Euclidean space.
