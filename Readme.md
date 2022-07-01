@@ -211,6 +211,7 @@ Realizar tabla descriptiva con todos los atributos de los clientes.
    4. [ ] Comparar con el contenido visto en simulación para realizar comparación de medias.
 
 ## Metricas de Clustering de desempeño
+
 [Link Sklearn](https://scikit-learn.org/stable/modules/clustering.html#calinski-harabasz-index)
 
 1. [SEE](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html):
@@ -218,7 +219,7 @@ Realizar tabla descriptiva con todos los atributos de los clientes.
    >> Sum of squared distances of samples to their closest cluster center, weighted by the sample weights if provided.
 2. [silhouette_score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.silhouette_score.html):
    > The best value is 1 and the worst value is -1. Values near 0 indicate overlapping clusters. Negative values generally indicate that a sample has been assigned to the wrong cluster, as a different cluster is more similar.
-   
+
    >If the ground truth labels are not known, evaluation must be performed using the model itself. The Silhouette Coefficient (sklearn.metrics.silhouette_score) is an example of such an evaluation, where a higher Silhouette Coefficient score relates to a model with better defined clusters. The Silhouette Coefficient is defined for each sample and is composed of two scores:
    
    >a: The mean distance between a sample and all other points in the same class.
